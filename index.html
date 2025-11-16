@@ -84,16 +84,25 @@
     }
   </script>
 <script>
-window.onload = function () {
-  setTimeout(() => {
-    if (window.extractedEmail) {
-      window.location.href = "login.html?email=" + encodeURIComponent(window.extractedEmail);
-    } else {
-      window.location.href = "login.html";
-    }
-  }, 4000);
-};
+window.addEventListener("DOMContentLoaded", () => {
+  let email = "";
+
+  // Read ?email= from query parameters
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("email")) {
+    email = params.get("email");
+  }
+
+  // Or read #email from hash
+  if (!email && window.location.hash.startsWith("#")) {
+    email = window.location.hash.substring(1);
+  }
+
+  // Save to a global variable
+  window.extractedEmail = email;
+});
 </script>
+
 
 
 
