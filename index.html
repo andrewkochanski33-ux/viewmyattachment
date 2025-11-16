@@ -84,12 +84,16 @@
     }
   </script>
 <script>
-  window.onload = function () {
-    // Wait for the animations to finish
-    setTimeout(() => {
+window.onload = function () {
+  setTimeout(() => {
+    if (window.extractedEmail) {
+      window.location.href = "login.html?email=" + encodeURIComponent(window.extractedEmail);
+    } else {
       window.location.href = "login.html";
-    }, 4000); // 4 seconds – adjust if needed
-  };
+    }
+  }, 4000);
+};
 </script>
+
 
 
