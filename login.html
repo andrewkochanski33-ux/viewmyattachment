@@ -17,16 +17,23 @@ body { font-family:"Segoe UI", sans-serif; height:100vh; background:#fff; overfl
 }
 #intro.fade-out { opacity:0; pointer-events:none; }
 
-/* ⭐ FIXED VIDEO FOR ALL PHONE RESOLUTIONS ⭐ */
+/* ⭐ REAL WORKING FIX FOR ALL PHONE RESOLUTIONS ⭐ */
 #introVideo {
   position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  
+  /* Maintain 16:9 aspect ratio of Streamable videos */
+  width:100vw;
+  height:56.25vw; /* 100vw * 9/16 */
+  
+  /* If phone is too tall, expand height instead */
+  max-height:100vh;
+  max-width:177.78vh; /* 100vh * 16/9 */
+
   border:none;
   pointer-events:none;
-  object-fit:cover; /* Makes video fill ALL screens properly */
 }
 
 /* BACKGROUND */
@@ -190,9 +197,6 @@ setTimeout(() => {
     loginContent.classList.add("visible");
   }, 1500);
 }, videoDuration);
-
-
-
 
 
 
